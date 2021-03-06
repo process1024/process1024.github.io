@@ -6,4 +6,5 @@ module.exports = {
   themeConfig: {
     logo: 'https://vuejs.org/images/logo.png',
   },
+  base: '/article/'
 }
