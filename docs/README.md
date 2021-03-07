@@ -1,10 +1,3 @@
----
-# 主题列表：juejin, github, smartblue, cyanosis, channing-cyan, fancy, hydrogen, condensed-night-purple, greenwillow, v-green, vue-pro, healer-readable, mk-cute, jzman, geek-black, awesome-green, qklhk-chocolate
-# 贡献主题：https://github.com/xitu/juejin-markdown-themes
-theme: condensed-night-purple
-highlight:
----
-
 # 前言
 
 nextTick 是 Vue 中经常见并且实用的一个方法，这里做一个完全的解析。
