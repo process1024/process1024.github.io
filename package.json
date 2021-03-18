@@ -5,8 +5,10 @@
   "author": "chenjunyi <629162344@qq.com>",
   "license": "MIT",
   "scripts": {
+    "c": "git add . && git-cz && git push",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.0.1",
@@ -17,11 +19,6 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "dependencies": {
