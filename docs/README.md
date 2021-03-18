@@ -1,10 +1,10 @@
 ---
 home: true
-title: Home
+title: 前端好好玩
 heroImage: /images/hero.jpg
 actions:
   - text: 进入
-    link: /vue/
+    link: /vue/NextTick.html
     type: primary
 features:
   - title: 知识整理
