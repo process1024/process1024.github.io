@@ -12,7 +12,7 @@ module.exports = {
   ],
   themeConfig: {
     logo: '/images/logo.png',
-    repo: 'https://github.com/chen-junyi/article',
+    // repo: 'https://github.com/chen-junyi/article',
     locales: {
       '/': {
         label: '简体中文',
@@ -37,7 +37,20 @@ module.exports = {
             text: '算法',
             link: '/algorithm/',
           },
-          { text: '关于我', link: 'https://github.com/chen-junyi' }
+          {
+            text: '文章',
+            link: '/blog/',
+          },
+          {
+            text: '关于我',
+            children: [{
+              text: 'github',
+              link: 'https://github.com/chen-junyi'
+            }, {
+              text: '源码',
+              link: 'https://github.com/chen-junyi/article'
+            }],
+          }
         ]
       }
     },
@@ -54,6 +67,13 @@ module.exports = {
           isGroup: true,
           text: 'react',
           children: ['/react/hook.md', '/react/fiber.md'],
+        },
+      ],
+      '/blog/': [
+        {
+          isGroup: true,
+          text: 'blog',
+          children: ['/blog/Action.md', '/blog/Cache.md', '/blog/NextTick.md'],
         },
       ],
     },

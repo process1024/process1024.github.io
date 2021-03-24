@@ -4,7 +4,7 @@ title: 前端好好玩
 heroImage: /images/hero.jpg
 actions:
   - text: 进入
-    link: /vue/NextTick.html
+    link: /blog/Action.html
     type: primary
 features:
   - title: 知识整理
