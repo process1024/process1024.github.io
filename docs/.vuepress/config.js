@@ -27,7 +27,7 @@ module.exports = {
           { text: '首页', link: '/' },
           {
             text: '基础',
-            link: '/frontend/'
+            link: '/frontend/Javascript.html'
           },
           {
             text: '框架',
@@ -39,7 +39,7 @@ module.exports = {
           },
           {
             text: '文章',
-            link: '/blog/',
+            link: '/blog/Action.html',
           },
           {
             text: '关于我',
@@ -62,7 +62,10 @@ module.exports = {
         {
           isGroup: true,
           text: '大前端',
-          children: ['/frontend/Javascript.md', '/frontend/Browser.md', '/frontend/Nodejs.md', '/frontend/Http.md',],
+          children: ['/frontend/Javascript.md',
+            '/frontend/Browser.md',
+            '/frontend/Nodejs.md',
+            '/frontend/Http.md'],
         },
       ],
       '/vue/': [
@@ -83,7 +86,14 @@ module.exports = {
         {
           isGroup: true,
           text: 'blog',
-          children: ['/blog/Action.md', '/blog/Cache.md', '/blog/NextTick.md'],
+          children: [
+            '/blog/Action.md',
+            '/blog/Cache.md',
+            '/blog/NextTick.md',
+            '/blog/Element-Validate.md',
+            '/blog/Function.md',
+            '/blog/Bit.md',
+          ],
         },
       ],
     },
