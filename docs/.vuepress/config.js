@@ -110,6 +110,7 @@ module.exports = {
             "/blog/Function.md",
             "/blog/Bit.md",
             "/blog/Vue2.md",
+            "/blog/Vue3.md",
           ],
         },
       ],
