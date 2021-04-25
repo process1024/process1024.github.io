@@ -14,7 +14,7 @@ module.exports = {
     ["meta", { name: "description", content: "技术文章" }],
   ],
   themeConfig: {
-    logo: "/images/logo.png",
+    logo: "images/logo.png",
     // repo: 'https://github.com/chen-junyi/article',
     locales: {
       "/": {
@@ -95,7 +95,7 @@ module.exports = {
         {
           isGroup: true,
           text: "算法",
-          children: ["/algorithm/sort.md"],
+          children: ["/algorithm/dataStruct.md", "/algorithm/sort.md"],
         },
       ],
       "/blog/": [

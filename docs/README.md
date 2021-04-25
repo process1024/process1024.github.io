@@ -1,7 +1,7 @@
 ---
 home: true
 title: 前端好好玩
-heroImage: /images/hero.jpg
+heroImage: images/hero.jpg
 actions:
   - text: 进入
     link: /blog/Action.html
