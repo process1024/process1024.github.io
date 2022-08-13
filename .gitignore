@@ -2,3 +2,5 @@ node_modules
 .temp
 .cache
 yarn.lock
+.yarn
+docs/.vitepress/dist

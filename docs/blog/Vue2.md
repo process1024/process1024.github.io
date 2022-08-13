@@ -8,7 +8,7 @@ vue 在初始化的时候会对数据进行劫持，包括 props，data，method
 
 如果是对象则采用 Object.defineProperty()的方式定义数据拦截:
 
-```javascript
+```
 function defineReactive(obj, key, val) {
   Object.defineProperty(obj, key, {
     get() {
@@ -24,7 +24,7 @@ function defineReactive(obj, key, val) {
 
 如果是数组，则覆盖数组的 7 个变更方法实现变更通知:
 
-```javascript
+```
 const arrayProto = Array.prototype;
 const arrayMethods = Object.create(arrayProto)[
   ("push", "pop", "shift", "unshift", "splice", "sort", "reverse")
@@ -48,7 +48,7 @@ const arrayMethods = Object.create(arrayProto)[
 
 答案是 v-for 解析的优先级高，可以在源码的 compiler/codegen/index.js 里的 genElement 函数找到答案
 
-```javscript
+```
 function genElement (el: ASTElement, state: CodegenState): string {
   if (el.parent) {
     el.pre = el.pre || el.parent.pre
@@ -105,7 +105,7 @@ vue 中的内置指令都有相应的解析函数，执行顺序是通过简单�
 
 > 只提取了本次要分析的关键代码
 
-```javascript
+```
 function patch(oldVnode, vnode) {
   if (isUndef(vnode)) {
     if (isDef(oldVnode)) invokeDestroyHook(oldVnode);
@@ -136,7 +136,7 @@ patch 函数接收 oldVnode 和 vnode，也就是要比较的新旧节点对象�
 
 首先会用 isUndef 函数判断传入的两个 vnode 是否为空对象再做相应处理。当两个都为节点对象时，再用 sameVnode 来判断是否为同一节点，再判断本次操作是新增、修改、还是移除。
 
-```javascript
+```
 function sameVnode(a, b) {
   return (
     a.key === b.key && // key值
@@ -208,7 +208,7 @@ function flushCallbacks () {
 
 最后是定义 nextTick 方法：
 
-```javasscript
+```
 export function nextTick (cb?: Function, ctx?: Object) {
   let _resolve
   callbacks.push(() => {
@@ -675,7 +675,7 @@ render () {
 
 在 vue 中 template 最终会转成 render 函数，而 render 函数最终是执行的 createElement，生成 vnode，vnode 正是 vue 中用来表示虚拟 DOM 的类，看下 vnode：
 
-```javascript
+```
 class VNode {
   tag: string | void;
   data: VNodeData | void;

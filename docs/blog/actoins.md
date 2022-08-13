@@ -25,7 +25,7 @@ yarn add -D vuepress@next
 
 #### 2.添加 script 命令
 
-```package.json
+```
 {
   "scripts": {
     "docs:dev": "vuepress dev docs",
@@ -58,7 +58,7 @@ actions 顾名思义就是一堆动作，是一个持续集成服务，持续集
 
 不同项目的很多操作可以是一样的，比如拉取分支代码、缓存依赖等，每个也就是一个 action 脚本是可以共用的，所以 GitHub 允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。
 
-GitHub 做了一个[官方市场](https://github.com/marketplace?type=actions)，可以让开发者提交 action 供其他人使用，GitHub 官方的 actions 则都放在 [github.com/actions](github.com/actions) 里面。接下来介绍写一个 VuePress 的 action。
+GitHub 做了一个[官方市场](https://github.com/marketplace?type=actions)，可以让开发者提交 action 供其他人使用，GitHub 官方的 actions 则都放在 [github.com/actions](https://github.com/actions) 里面。接下来介绍写一个 VuePress 的 action。
 
 ### 建立仓库
 
@@ -84,7 +84,7 @@ jobs 是 workflow 最重要的部分，表示 workflow 要执行的任务，可�
 
 我们希望的流程是，本地改完代码，上传到 github 后能自动打包部署到 gh-pages 分支。先配置触发条件 on：
 
-```yml
+```yaml
 on: # 触发条件
   # 每当 push 到 master 分支时触发部署
   push:
@@ -95,7 +95,7 @@ on: # 触发条件
 
 接下来配置重头戏 jobs:
 
-```yml
+```yaml
 jobs:
   docs:
     runs-on: ubuntu-latest # 指定运行所需要的虚拟机环境（必填）
