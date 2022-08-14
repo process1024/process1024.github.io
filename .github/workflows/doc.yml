@@ -51,4 +51,4 @@ jobs:
           target_branch: gh-pages
           GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
           # 部署目录为 vitepress 的默认输出目录
-          build_dir: docs/.vitepress/dist
+          publish_dir: docs/.vitepress/dist
