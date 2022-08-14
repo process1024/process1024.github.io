@@ -46,10 +46,9 @@ jobs:
       # @see https://github.com/crazy-max/ghaction-github-pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
         with:
           # 部署到 gh-pages 分支
           target_branch: gh-pages
+          GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
           # 部署目录为 vitepress 的默认输出目录
           build_dir: docs/.vitepress/dist
