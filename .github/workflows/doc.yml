@@ -1,32 +1,28 @@
-name: docs # workflow名称
+name: build to my github
 
-on: # 触发条件
-  # 每当 push 到 main 分支时触发部署
+on:
   push:
-    branches: [master]
-  # 是否手动触发部署
-  workflow_dispatch:
+    branches:
+      - master
 
 jobs:
-  docs:
-    runs-on: ubuntu-latest # 指定运行所需要的虚拟机环境（必填）
-
+  deploy:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
-
-      - run: npm install
+          cache: npm
+      - run: npm install --frozen-lockfile
 
       - name: Build
         run: npm run build
 
-      # 查看 workflow 的文档来获取更多信息
-      - name: Deploy to GitHub Pages
+      # - name: CreateTag
+      #   run git tag -a
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
-          # 部署目录为 vitepress 的默认输出目录
           publish_dir: docs/.vitepress/dist
