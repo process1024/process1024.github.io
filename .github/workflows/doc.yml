@@ -18,10 +18,9 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          # 选择要使用的 node 版本
-          node-version: "14"
+          node-version: 16
 
       # 缓存 node_modules
       - name: Cache dependencies
@@ -46,7 +45,7 @@ jobs:
       # 查看 workflow 的文档来获取更多信息
       # @see https://github.com/crazy-max/ghaction-github-pages
       - name: Deploy to GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v2
+        uses: peaceiris/actions-gh-pages@v3
         env:
           GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
         with:
