@@ -8,7 +8,7 @@ vue 在初始化的时候会对数据进行劫持，包括 props，data，method
 
 如果是对象则采用 Object.defineProperty()的方式定义数据拦截:
 
-```
+```javascript
 function defineReactive(obj, key, val) {
   Object.defineProperty(obj, key, {
     get() {
@@ -24,7 +24,7 @@ function defineReactive(obj, key, val) {
 
 如果是数组，则覆盖数组的 7 个变更方法实现变更通知:
 
-```
+```javascript
 const arrayProto = Array.prototype;
 const arrayMethods = Object.create(arrayProto)[
   ("push", "pop", "shift", "unshift", "splice", "sort", "reverse")
@@ -48,7 +48,7 @@ const arrayMethods = Object.create(arrayProto)[
 
 答案是 v-for 解析的优先级高，可以在源码的 compiler/codegen/index.js 里的 genElement 函数找到答案
 
-```
+```javascript
 function genElement (el: ASTElement, state: CodegenState): string {
   if (el.parent) {
     el.pre = el.pre || el.parent.pre
@@ -105,7 +105,7 @@ vue 中的内置指令都有相应的解析函数，执行顺序是通过简单�
 
 > 只提取了本次要分析的关键代码
 
-```
+```javascript
 function patch(oldVnode, vnode) {
   if (isUndef(vnode)) {
     if (isDef(oldVnode)) invokeDestroyHook(oldVnode);
@@ -136,7 +136,7 @@ patch 函数接收 oldVnode 和 vnode，也就是要比较的新旧节点对象�
 
 首先会用 isUndef 函数判断传入的两个 vnode 是否为空对象再做相应处理。当两个都为节点对象时，再用 sameVnode 来判断是否为同一节点，再判断本次操作是新增、修改、还是移除。
 
-```
+```javascript
 function sameVnode(a, b) {
   return (
     a.key === b.key && // key值
@@ -170,7 +170,7 @@ vue 中双向绑定是一个指令 v-model，可以绑定一个动态值到视�
 
 如果是自定义组件的话要使用它需要在组件内绑定 props value 并在数据更新数据的时候用$emit('input')，也可以在组件里定义 modal 属性来自定义绑定的属性名和事件名称。
 
-```
+```javascript
 model: {
     prop: 'checked',
     event: 'change'
@@ -189,7 +189,7 @@ nextTick 就是将回调函数放到队列里去，保证在异步更新 DOM 的
 
 首先是定义执行任务队列方法
 
-```
+```javascript
 function flushCallbacks () {
   pending = false
   const copies = callbacks.slice(0)
@@ -208,7 +208,7 @@ function flushCallbacks () {
 
 最后是定义 nextTick 方法：
 
-```
+```javascript
 export function nextTick (cb?: Function, ctx?: Object) {
   let _resolve
   callbacks.push(() => {
@@ -252,7 +252,7 @@ export function nextTick (cb?: Function, ctx?: Object) {
 
 on 和 emit 是在组件实例初始化的时候通过`initEvents`初始化事件，在组件实例 vm.\_events 赋值一个空的事件对象，通过这个对象实现事件的发布订阅。下面是事件注册的几个关键函数：
 
-```
+```javascript
 // 组件初始化event对象，收集要监听的事件和对应的回调函数
 function initEvents (vm: Component) {
   vm._events = Object.create(null)
@@ -287,7 +287,7 @@ function updateComponentListeners (
 
 通常是创建一个`空的Vue实例作为事件总线(事件中心)`，实现任何组件在这个实例上的事件触发与监听。原理就是一个发布订阅的模式，跟` $on``$emit `一样，在实例化一个组件的事件通过 initEvents 初始化一个空的 event 对象，再通过实例化后的这个 bus(vue 实例)手动的`$on`、`$emit`添加监听和触发的事件，代码在`src/core/instance/events`:
 
-```
+```javascript
 Vue.prototype.$on = function (event: string | Array<string>, fn: Function): Component {
     const vm: Component = this
     // 传入的事件如果是数组，就循环监听每个事件
@@ -364,7 +364,7 @@ method: 将方法在模板里使用，每次视图有更新都会重新执行函
 
 结合源码再理解，在源码中生命周期钩子是用 callHook 函数调用的。看下 callHook 函数：
 
-```
+```javascript
 function callHook (vm: Component, hook: string) {
   pushTarget()
   const handlers = vm.$options[hook]
@@ -423,7 +423,7 @@ vm.$mount就是Vue.prototype.$mount 原型方法继承而来的。这个方法�
 
 这两个钩子函数是在数据更新的时候进行回调的函数。在`src/core/instance/lifecycle.js`找到 beforeUpdate 调用的代码：
 
-```
+```javascript
 ...
 new Watcher(vm, updateComponent, noop, {
     before () {
@@ -437,7 +437,7 @@ new Watcher(vm, updateComponent, noop, {
 
 \_isMounted 为 ture 的话（DOM 已经被挂载）会调用 callHook(vm, 'beforeUpdate')方法，然后会对虚拟 DOM 进行重新渲染。然后在/src/core/observer/scheduler.js 下的 flushSchedulerQueue()函数中渲染 DOM，flushSchedulerQueue 会刷新 watcher 队列并执行，执行完所有 watcher 的 run 方法之后（run 方法就是 watcher 进行 dom diff 并更新 DOM 的方法），再调用 callHook(vm, 'updated')，代码如下：
 
-```
+```javascript
 /**
  * Flush both queues and run the watchers.
  */
@@ -472,7 +472,7 @@ function callUpdatedHooks (queue) {
 
 这两个钩子是 vue 实例销毁的钩子，定义在 Vue.prototype.$destroy 中：
 
-```
+```javascript
 Vue.prototype.$destroy = function () {
     const vm: Component = this
     if (vm._isBeingDestroyed) {
@@ -531,7 +531,7 @@ activated、deactivated 这两个钩子函数分别是在 keep-alive 组件激�
 
 errorCaptured 捕获到当子孙组件错误时会被调用，在源码中可以经常看到 try catch 中 catch 会调用 handleError 函数，handleError 会向组件所有的父级组件抛出异常，
 
-```
+```javascript
 function handleError (err: Error, vm: any, info: string) {
   pushTarget()
   try {
@@ -572,7 +572,7 @@ keep-alive 是一个组件，跟其他组件一样有生命周期和 render 函�
 
 源码再`src/core/components/keep-alive`，created 声明了要缓存的组件对象，和存储的组件 keys，keep-alive 销毁的时候会用 pruneCacheEntry 将缓存的所有组件实例销毁，也就是调用组件实例的 destroy 方法。在挂载完成后监听 include 和 exclude，动态地销毁已经不满足 include 的组件和满足 exclude 的组件实例:
 
-```
+```javascript
 created () {
     this.cache = Object.create(null) // 存储需要缓存的组件
     this.keys = [] // 存储每个需要缓存的组件的key，即对应this.cache对象中的键值
@@ -596,7 +596,7 @@ mounted () {
 
 接下来是 render 函数：
 
-```
+```javascript
 render () {
     const slot = this.$slots.default
     const vnode: VNode = getFirstComponentChild(slot)
@@ -778,7 +778,7 @@ diff 算法发生在`视图更新`的时候，也就是数据更新的时候，`
 
 看下组件更新的\_update 方法：
 
-```
+```javascript
 Vue.prototype._update = function (vnode: VNode, hydrating?: boolean) {
     const vm: Component = this
     const prevEl = vm.$el
@@ -804,7 +804,7 @@ vm.$el = vm.\_patch（），这个就是最终渲染的 DOM 元素，patch 就�
 
 看下 patch 代码（部分）：
 
-```
+```javascript
 function patch (oldVnode, vnode, hydrating, removeOnly, parentElm, refElm) {
     /*vnode不存在则直接调用销毁钩子*/
     if (isUndef(vnode)) {
@@ -839,7 +839,7 @@ function patch (oldVnode, vnode, hydrating, removeOnly, parentElm, refElm) {
 
 ### patchVnode
 
-```
+```javascript
 function patchVnode (
     oldVnode,
     vnode,
@@ -934,7 +934,7 @@ function patchVnode (
 
 ### updateChildren
 
-```
+```javascript
 function updateChildren (parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly) {
     // 声明oldCh和newCh的头尾索引和头尾的vnode，
     let oldStartIdx = 0
@@ -1032,7 +1032,7 @@ Vuex 的设计思想，借鉴了 Flux、Redux，将数据存放到全局的 stor
 
 原理可以从使用方式开始分析。
 
-```
+```javascript
 Vue.use(Vuex); // 1. vue的插件机制，安装vuex
 let store = new Vuex.Store({ // 2.实例化store，调用install方法
  	state,
@@ -1050,7 +1050,7 @@ new Vue({ // 3.注入store, 挂载vue实例
 
 Vue.use 是 vue 中的插件机制，内部会调用插件的 install 方法，vuex 的 install 方法：
 
-```
+```javascript
 export function install (_Vue) {
   if (Vue) {
     if (process.env.NODE_ENV !== 'production') {
@@ -1069,7 +1069,7 @@ export function install (_Vue) {
 
 vuex 是个全局的状态管理，全局有且只能有一个 store 实例，所以在 install 的时候会判断是否已经安装过了，这个就是单例模式，确保一个类只有一个实例。在第一次 install 的时候会 applyMixin，applyMixin 是`/src/mixin`导入的方法:
 
-```
+```javascript
 function (Vue) {
   const version = Number(Vue.version.split('.')[0])
 
@@ -1109,7 +1109,7 @@ function (Vue) {
 
 store 实现的源码在`src/store.js`，其中最核心的是响应式的实现，通过 resetStoreVM(this, state)调用，看下这个方法：
 
-```
+```javascript
 function resetStoreVM (store, state, hot) {
   const oldVm = store._vm
 
