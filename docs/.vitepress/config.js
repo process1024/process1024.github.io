@@ -5,6 +5,7 @@ const config = {
     title: "前端好好玩",
     description: "前端进阶网站",
     lastUpdated: true,
+    base: '/article',
     // lang: 'zh-CN',
     themeConfig: {
         // logo: "./public/images/logo.png",
