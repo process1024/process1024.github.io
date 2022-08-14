@@ -6,9 +6,9 @@
   "license": "MIT",
   "scripts": {
     "cz": "git add . && git-cz && git push",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs",
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "serve": "vitepress serve docs",
     "prepare": "husky install"
   },
   "devDependencies": {
