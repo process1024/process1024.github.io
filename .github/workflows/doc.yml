@@ -24,12 +24,7 @@ jobs:
       - name: Build
         run: npm run build
 
-      # 运行构建脚本
-      - name: Build vitepress site
-        run: yarn build
-
       # 查看 workflow 的文档来获取更多信息
-      # @see https://github.com/crazy-max/ghaction-github-pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
