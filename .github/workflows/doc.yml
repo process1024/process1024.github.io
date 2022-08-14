@@ -13,10 +13,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm install
-
+          cache: yarn
+      - run: yarn install --frozen-lockfile
       - name: Build
-        run: npm run build
+        run: yarn docs:build
 
       # - name: CreateTag
       #   run git tag -a
