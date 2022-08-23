@@ -8,7 +8,7 @@ hero:
   text: 前端好好玩
   tagline: 前端知识大全
   image:
-    src: /logo.png
+    src: /pure-logo.png
     alt: logo
   actions:
     - theme: brand
