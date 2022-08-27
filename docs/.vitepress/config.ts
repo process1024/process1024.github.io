@@ -7,9 +7,9 @@ const config = {
   lastUpdated: true,
   base: "/article",
   // lang: 'zh-CN',
-  head: [["link", { rel: "icon", type: "image/png", href: "favicon.ico" }]],
+  head: [["link", { rel: "icon", type: "image/png", href: "pure-logo.svg" }]],
   themeConfig: {
-    logo: "/pure-logo.png",
+    logo: "/pure-logo.svg",
     nav: [
       { text: "首页", link: "/" },
       {
