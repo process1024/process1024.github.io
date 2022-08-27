@@ -2,8 +2,8 @@
  * @type {import('vitepress').UserConfig}
  */
 const config = {
-  title: "前端好好玩11",
-  description: "前端进阶网站22",
+  title: "前端好好玩",
+  description: "前端进阶网站",
   lastUpdated: true,
   base: "/article",
   // lang: 'zh-CN',
