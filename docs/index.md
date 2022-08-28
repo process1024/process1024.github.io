@@ -13,10 +13,10 @@ hero:
   actions:
     - theme: brand
       text: 更多详情
-      link: /daily/
+      link: /frontend/javascript
     - theme: alt
       text: 访问我的GitHub
-      link: https://github.com/chen-junyi
+      link: https://github.com/process1024
     - theme: alt
       text: 关于我
       link: /me/

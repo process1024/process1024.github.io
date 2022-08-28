@@ -1,6 +1,6 @@
 # GitHub Action + VuePress 部署
 
-本文教你如何使用 GitHub Action + vuepress 自动化部署在 GitHub Pages。最终的代码在我的[GitHub](https://github.com/chen-junyi/article)可以看，演示可以点[这里](https://chen-junyi.github.io/article/)，演示访问不了的可以访问我的[gitee pages 地址](https://junyi-chen.gitee.io/article/)，我在 gitee 也有同步代码部署 gitee pages。
+本文教你如何使用 GitHub Action + vuepress 自动化部署在 GitHub Pages。最终的代码在我的[GitHub](https://github.com/process1024/article)可以看，演示可以点[这里](https://process1024.github.io/article/)，演示访问不了的可以访问我的[gitee pages 地址](https://junyi-chen.gitee.io/article/)，我在 gitee 也有同步代码部署 gitee pages。
 
 ## VuePress
 
@@ -164,9 +164,9 @@ jobs:
 
 ## 源码
 
-gitHub: https://github.com/chen-junyi/article
+gitHub: https://github.com/process1024/article
 
-github pages: https://chen-junyi.github.io/article/
+github pages: https://process1024.github.io/article/
 
 gitee pages: https://junyi-chen.gitee.io/article/
 

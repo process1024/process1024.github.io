@@ -343,7 +343,7 @@ if (ifNoneMatch === etag) {
 
 合理的使用强缓存和协商缓存具体需要看项目的使用场景和需求。像目前常见的单页面应用，因为通常打包都是新生成 html 与相应的静态资源依赖，所以可以对 html 文件配置协商缓存，而打包生成的依赖，例如 js、css 这些文件可以使用强缓存。或者只对第三方库使用强缓存，因为第三方库通常版本更新较慢，可以锁定版本。
 
-node 示例完整代码可以在这里看https://github.com/chen-junyi/code/blob/main/node/cache/koa2.js
+node 示例完整代码可以在这里看https://github.com/process1024/code/blob/main/node/cache/koa2.js
 
 ## 写在最后
 

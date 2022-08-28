@@ -36,11 +36,11 @@ const config = {
         items: [
           {
             text: "github",
-            link: "https://github.com/chen-junyi",
+            link: "https://github.com/process1024",
           },
           {
             text: "源码",
-            link: "https://github.com/chen-junyi/article",
+            link: "https://github.com/process1024/article",
           },
           {
             text: "掘金首页",
@@ -164,7 +164,7 @@ const config = {
         },
       ],
     },
-    socialLinks: [{ icon: "github", link: "https://github.com/chen-junyi" }],
+    socialLinks: [{ icon: "github", link: "https://github.com/process1024" }],
   },
   slide: {
     "/frontend/": [

@@ -6,8 +6,8 @@
 > 水平有限，有讲的不对的，希望各位大佬指出来，或者有其他的面试题想了解的，欢迎提出来，我研究后同步在本文。
 
 > 个人整理的前端进阶知识网站，欢迎关注:    
-> 仓库地址：https://github.com/chen-junyi/article   
-> 网站地址: https://chen-junyi.github.io/article/ 、国内访问https://junyi-chen.gitee.io/article/
+> 仓库地址：https://github.com/process1024/article   
+> 网站地址: https://process1024.github.io/article/ 、国内访问https://junyi-chen.gitee.io/article/
 
 ## 1. vue3与vue2有哪些不同
 
