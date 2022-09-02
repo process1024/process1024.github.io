@@ -54,6 +54,7 @@ p img {
     --vp-nav-height-mobile: 56px;
     --vp-nav-height-desktop: 65px;
     --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+    --vp-nav-height: 200px;
   }
   
   /**
