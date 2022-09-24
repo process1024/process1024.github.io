@@ -2,10 +2,13 @@
   <h1>关于我</h1>
   <p>hi, 我是Process1024，一名前端开发工程师，目前在厦门工作。</p>
   <p>
+    五年前端开发经验，擅长前端领域的各种技术，包括但不限于vue/react/typescript/canvas/浏览器插件
+  </p>
+  <p>
     你可以在这里找到我：
-    <a v-for="(link, index) of links" :key="link.text" :href="link.href">{{
-      `${link.text} ${index + 1 < links.length ? "、" : ""}`
-    }}</a>
+    <a v-for="(link, index) of links" :key="link.text" :href="link.href">
+      {{ `${link.text} ${index + 1 < links.length ? "、" : ""}` }}
+    </a>
   </p>
 
   <p>邮箱：62916233@qq.com</p>
