@@ -19,8 +19,8 @@ const config = {
       {
         text: "框架",
         items: [
-          { text: "vue", link: "/vue/" },
-          { text: "react", link: "/react/" },
+          { text: "Vue", link: "/vue/next-tick" },
+          { text: "React", link: "/react/fiber" },
         ],
       },
       {
