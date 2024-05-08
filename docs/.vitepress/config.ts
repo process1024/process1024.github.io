@@ -24,8 +24,11 @@ const config = {
         ],
       },
       {
-        text: "算法",
-        link: "/algorithm/sort",
+        text: "进阶",
+        items: [
+          { text: "算法", link: "/algorithm/sort" },
+          { text: "性能优化", link: "/performance/browser" },
+        ],
       },
       {
         text: "文章",
