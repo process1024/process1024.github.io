@@ -5,7 +5,7 @@ const config = {
   title: "前端好好玩",
   description: "前端进阶网站",
   lastUpdated: true,
-  base: "/article",
+  base: "/",
   // lang: 'zh-CN',
   head: [["link", { rel: "icon", type: "image/png", href: "pure-logo.svg" }]],
   themeConfig: {
