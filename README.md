@@ -6,7 +6,7 @@
 
 [gitee国内访问地址](https://junyi-chen.gitee.io/article/)
 
-[github访问地址](https://process1024.github.io/article/)
+[github访问地址](https://process1024.github.io/)
 
 # 联系方式
 

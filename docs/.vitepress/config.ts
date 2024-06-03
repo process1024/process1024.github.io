@@ -7,7 +7,13 @@ const config = {
   lastUpdated: true,
   base: "/",
   // lang: 'zh-CN',
-  head: [["link", { rel: "icon", type: "image/png", href: "pure-logo.svg" }]],
+  head: [["link", { rel: "icon", type: "image/png", href: "pure-logo.svg" }], [
+    "script", {
+      async: '',
+      src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3921855445087471',
+      crossorigin: 'anonymous'
+    }
+  ]],
   themeConfig: {
     logo: "/pure-logo.svg",
     nav: [
@@ -41,10 +47,10 @@ const config = {
             text: "github",
             link: "https://github.com/process1024",
           },
-          {
-            text: "源码",
-            link: "https://github.com/process1024/article",
-          },
+          // {
+          //   text: "源码",
+          //   link: "https://github.com/process1024/article",
+          // },
           {
             text: "掘金首页",
             link: "https://juejin.cn/user/1011206427522078",
