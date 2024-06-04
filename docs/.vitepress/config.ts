@@ -9,9 +9,14 @@ const config = {
   // lang: 'zh-CN',
   head: [["link", { rel: "icon", type: "image/png", href: "pure-logo.svg" }], [
     "script", {
-      async: '',
+      async: 'async',
       src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3921855445087471',
       crossorigin: 'anonymous'
+    }
+  ], [
+    "meta", {
+      name: 'google-adsense-account',
+      content: 'ca-pub-3921855445087471'
     }
   ]],
   themeConfig: {
