@@ -6,7 +6,8 @@
 
 Service Worker 是运行在浏览器背后的独立线程，一般可以用来实现缓存功能
 使用 Service Worker的话，传输协议必须为 HTTPS,因为 Service Worker 中涉及到请求拦截，所以必须使用 HTTPS 协议来保障安全
-步骤
+
+#### 步骤
 
 注册 Service Worker
 监听到 install 事件以后就可以缓存需要的文件
@@ -79,7 +80,6 @@ Push Cache 中的缓存只能被使用一次
 都是通过设置 HTTP Header 来实现的
 
 ## 渲染原理
-
 
 HTML 经过解析生成 DOM 树； CSS 经过解析生成　 Style Rules。 二者一结合生成了 Render Tree。
 通过 layout 计算出 DOM 要显示的宽高、位置、颜色。
@@ -184,6 +184,7 @@ JavaScript放在底部：将JavaScript放在`<body>`标签的底部，这样浏�
 ## web 安全
 
 ### XSS（跨站脚本攻击）
+
 XSS（跨站脚本攻击）是一种常见的Web安全漏洞，它允许攻击者在用户浏览器中注入恶意脚本，从而劫持用户会话、窃取用户信息或者在用户机器上执行恶意操作。XSS攻击通常发生在应用程序对用户输入的数据没有进行适当的过滤和转义的情况下。
 
 XSS攻击的类型主要有三种：

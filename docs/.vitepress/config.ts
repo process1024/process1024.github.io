@@ -49,6 +49,10 @@ const config = {
         text: "关于我",
         items: [
           {
+            text: "🐳",
+            link: "/me/index",
+          },
+          {
             text: "github",
             link: "https://github.com/process1024",
           },
@@ -177,6 +181,18 @@ const config = {
           ],
         },
       ],
+      "/me/": [
+        {
+          isGroup: false,
+          text: "关于我",
+          items: [
+            {
+              text: "关于我",
+              link: "/me/index",
+            },
+          ]
+        }
+      ]
     },
     socialLinks: [{ icon: "github", link: "https://github.com/process1024" }],
   },
