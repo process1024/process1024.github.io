@@ -236,7 +236,7 @@ console.log(c.a)
 
 以上几种情况明白了，很多代码中的 `this` 应该就没什么问题了，下面让我们看看箭头函数中的 `this`
 
-```js
+```javascript
 function a() {
     return () => {
         return () => {
@@ -393,7 +393,7 @@ ArrayBuffer()构造函数可以分配指定字节数量的缓冲区，其参数�
 - 参数：它接受一个参数，即 bytelength，表示要创建数组缓冲区的大小（以字节为单位）；
 - 返回值：返回一个新的指定大小的ArrayBuffer对象，内容初始化为0。
 
-2. ArrayBuffer.prototype.byteLength
+2.ArrayBuffer.prototype.byteLength
 ArrayBuffer 实例上有一个 byteLength 属性，它是一个只读属性，表示 ArrayBuffer 的 byte 的大小，在 ArrayBuffer 构造完成时生成，不可改变。来看例子：
 
 ```javascript
@@ -401,7 +401,7 @@ const buffer = new ArrayBuffer(16);
 console.log(buffer.byteLength);  // 16
 ```
 
-1. ArrayBuffer.prototype.slice()
+3.ArrayBuffer.prototype.slice()
 ArrayBuffer 实例上还有一个 slice 方法，该方法可以用来截取 ArrayBuffer 实例，它返回一个新的 ArrayBuffer ，它的内容是这个 ArrayBuffer 的字节副本，从 begin（包括），到 end（不包括）。来看例子：
 
 ```javascript
@@ -411,7 +411,7 @@ console.log(buffer.slice(0, 8));  // 16
 
 这里会从 buffer 对象上将前8个字节生成一个新的ArrayBuffer对象。这个方法实际上有两步操作，首先会分配一段指定长度的内存，然后拷贝原来ArrayBuffer对象的置顶部分。
 
-4. ArrayBuffer.isView()
+4.ArrayBuffer.isView()
 ArrayBuffer 上有一个 isView()方法，它的返回值是一个布尔值，如果参数是 ArrayBuffer 的视图实例则返回 true，例如类型数组对象或 DataView 对象；否则返回 false。简单来说，这个方法就是用来判断参数是否是 TypedArray 实例或者 DataView 实例：
 
 ```javascript
@@ -472,7 +472,7 @@ lastModified: 数值，表示文件最后修改时间的 Unix 时间戳（毫秒
 
 ### Base64
 
-Base64是一种编码格式，在前端经常会碰到，格式是 data:[<mediatype>][;base64],<data> 。
+Base64是一种编码格式，在前端经常会碰到，格式是 data `:[<mediatype>][;base64],<data>` 。
 
 js内置了两个方法进行字符串的Base64的编码和解码。
 
