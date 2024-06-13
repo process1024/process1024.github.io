@@ -308,7 +308,7 @@ JavaScript 的单线程，与它的用途有关。作为浏览器脚本语言，
 服务器端 node 提供的办法。用此方法可以用于处于异步延迟的问题。
 可以理解为：此次不行，预约下次优先执行。
 
-### 浏览器的 Tasks、microtasks、 queues 和 schedules
+### 浏览器的 Tasks、micro tasks、 queues 和 schedules
 
 #### Promise
 
@@ -365,4 +365,136 @@ async 函数返回一个 Promise 对象，当函数执行的时候，一旦遇�
 3. 避免过多使用闭包。
 4. 注意清除定时器和事件监听器。
 5. nodejs 中使用 stream 或 buffer 来操作大文件，不会受 nodejs 内存限制。
-6. 即时清除无用的 DOM 引用
+6. 即时清除无用的 DOM 引用。
+
+## 二进制
+
+在 JavaScript 中处理文件或原始文件数据有几种方式，例如：File、Blob、FileReader、ArrayBuffer、base64 等
+
+### ArrayBuffer
+
+#### 介绍
+
+ArrayBuffer 对象用来表示通用的、固定长度的原始二进制数据缓冲区。ArrayBuffer 的内容不能直接操作，只能通过 DataView 对象或 TypedArray 对象来访问。这些对象用于读取和写入缓冲区内容。
+
+ArrayBuffer 本身就是一个黑盒，不能直接读写所存储的数据，需要借助以下视图对象来读写：
+
+- TypedArray：用来生成内存的视图，通过9个构造函数，可以生成9种数据格式的视图。
+- DataViews：用来生成内存的视图，可以自定义格式和字节序。
+
+1. ArrayBuffer 可以通过以下方式生成：
+
+```javascript
+new ArrayBuffer(bytelength)
+```
+
+ArrayBuffer()构造函数可以分配指定字节数量的缓冲区，其参数和返回值如下：
+
+- 参数：它接受一个参数，即 bytelength，表示要创建数组缓冲区的大小（以字节为单位）；
+- 返回值：返回一个新的指定大小的ArrayBuffer对象，内容初始化为0。
+
+2. ArrayBuffer.prototype.byteLength
+ArrayBuffer 实例上有一个 byteLength 属性，它是一个只读属性，表示 ArrayBuffer 的 byte 的大小，在 ArrayBuffer 构造完成时生成，不可改变。来看例子：
+
+```javascript
+const buffer = new ArrayBuffer(16); 
+console.log(buffer.byteLength);  // 16
+```
+
+1. ArrayBuffer.prototype.slice()
+ArrayBuffer 实例上还有一个 slice 方法，该方法可以用来截取 ArrayBuffer 实例，它返回一个新的 ArrayBuffer ，它的内容是这个 ArrayBuffer 的字节副本，从 begin（包括），到 end（不包括）。来看例子：
+
+```javascript
+const buffer = new ArrayBuffer(16); 
+console.log(buffer.slice(0, 8));  // 16
+```
+
+这里会从 buffer 对象上将前8个字节生成一个新的ArrayBuffer对象。这个方法实际上有两步操作，首先会分配一段指定长度的内存，然后拷贝原来ArrayBuffer对象的置顶部分。
+
+4. ArrayBuffer.isView()
+ArrayBuffer 上有一个 isView()方法，它的返回值是一个布尔值，如果参数是 ArrayBuffer 的视图实例则返回 true，例如类型数组对象或 DataView 对象；否则返回 false。简单来说，这个方法就是用来判断参数是否是 TypedArray 实例或者 DataView 实例：
+
+```javascript
+const buffer = new ArrayBuffer(16);
+ArrayBuffer.isView(buffer)   // false
+```
+
+```javascript
+const view = new Uint32Array(buffer);
+ArrayBuffer.isView(view)     // true
+```
+
+#### TypedArray
+
+TypedArray是一组构造函数，一共包含九种类型，每一种都是一个构造函数。
+TypedArray的构造函数接受三个参数，第一个ArrayBuffer（其实还可以是数组、视图这里不细说）对象，第二个视图开始的字节号（默认0），第三个视图结束的字节号（默认直到本段内存区域结束）。
+
+#### DataView
+
+DataView 就是一种更灵活的视图，DataView视图支持除Uint8ClampedArray以外的八种类型。DataView比使用TypedArray更方便，只需要简单的创建一次就能进行各种转换。
+
+### Blob
+
+Blob 对象表示一个不可变、原始数据的类文件对象。
+
+```javascript
+// 构造函数
+const blob = new Blob(array, options)
+```
+
+array 是一个由ArrayBuffer, ArrayBufferView, Blob, DOMString 等对象构成的数组，DOMStrings会被编码为UTF-8。
+
+options 是一个可选，它可能会指定如下两个属性：
+
+type，默认值为 ""，内容的MIME类型。
+endings，默认值为"transparent"，用于指定包含行结束符\n的字符串如何被写入。 它是以下两个值中的一个： "native"，代表行结束符会被更改为适合宿主操作系统文件系统的换行符，或者 "transparent"，代表会保持blob中保存的结束符不变
+
+```javascript
+const blob1 = new Blob(['hello randy'], { type: "text/plain" });
+```
+
+### File
+
+ile 描述文件信息的一个对象，可以让 JavaScript 访问文件信息。File 继承于 Blob。
+
+```javascript
+const file = new File(array, name[, options])
+```
+
+array 是一个由ArrayBuffer, ArrayBufferView, Blob, DOMString 等对象构成，DOMStrings会被编码为UTF-8。
+
+name 表示文件名称，或者文件路径。
+
+options 是一个可选，它可能会指定如下两个属性：
+
+type，默认值为 ""，内容的MIME类型。
+lastModified: 数值，表示文件最后修改时间的 Unix 时间戳（毫秒）。默认值为 Date.now()。
+
+### Base64
+
+Base64是一种编码格式，在前端经常会碰到，格式是 data:[<mediatype>][;base64],<data> 。
+
+js内置了两个方法进行字符串的Base64的编码和解码。
+
+```javascript
+const str1 = "hello randy";
+
+// 编码
+const b1 = window.btoa(str1);
+console.log(b1); // aGVsbG8gcmFuZHk=
+
+// 解码
+const str2 = window.atob(b1);
+console.log(str2); // hello randy
+```
+
+- 优点
+
+1. 可以将二进制数据（比如图片）转化为可打印字符，方便传输数据。
+2. 对数据进行简单的加密，肉眼是安全的。
+3. 如果是在html或者css处理图片，可以减少http请求。
+
+- 缺点
+
+1. 内容编码后体积变大， 至少大1/3。因为是三字节变成四个字节，当只有一个字节的时候，也至少会变成三个字节。
+2. 编码和解码需要额外工作量。

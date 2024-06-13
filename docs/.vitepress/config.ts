@@ -75,7 +75,7 @@ const config = {
           text: "大前端",
           items: [
             {
-              text: "javascript",
+              text: "Javascript",
               link: "/frontend/javascript",
             },
             {
@@ -83,11 +83,11 @@ const config = {
               link: "/frontend/browser",
             },
             {
-              text: "node",
+              text: "Node",
               link: "/frontend/nodejs",
             },
             {
-              text: "http",
+              text: "计算机网络",
               link: "/frontend/http",
             },
           ],
