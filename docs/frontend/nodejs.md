@@ -15,21 +15,21 @@
 - 不擅长 CPU 密集型业务
   - 由于 Node 单线程，如果长时间运行计算将导致 CPU 不能释放，使得后续 I/O 无法发起。（解决办法是分解大型运算为多个小任务，不阻塞 I/O 发起）
 
-### 全局对象 global
+## 全局对象 global
 
 与在浏览器端不同，浏览器端将全局访问的对象挂到 window 上，而 nodejs 则将全局访问的对象挂到 global 对象上
 
-### 全局变量
+## 全局变量
 
-#### __filename
+### __filename
 
 __filename 表示当前正在执行的脚本的文件名。它将输出文件所在位置的绝对路径，且和命令行参数所指定的文件名不一定相同。 如果在模块中，返回的值是模块文件的路径。
 
-#### __dirname
+### __dirname
 
 __dirname 表示当前执行脚本所在的目录。
 
-#### process
+### process
 
 用于描述当前Node.js 进程状态的对象，提供了一个与操作系统的简单接口。通常在你写本地命令行程序的时候，少不了要 和它打交道。下面将会介绍 process 对象的一些最常用的成员方法。
 
@@ -58,12 +58,11 @@ console.log(process.execPath);
 console.log(process.platform);
 ```
 
-#### Buffer
+### Buffer
 
 关于 buffer 介绍在 -javascript- 章节有讲解，可以看前面的章节。
 
-
-### 事件循环模型
+## 事件循环模型
 
 事件循环使 Node.js 可以通过将操作转移到系统内核中来执行非阻塞 I/O 操作（尽管 JavaScript 是单线程的）。
 
@@ -102,9 +101,9 @@ idle, prepare, ：仅在内部使用。
 5. close callbacks：一些关闭回调，例如 socket.on('close', ...)。
 在每次事件循环运行之间，Node.js 会检查它是否正在等待任何异步 I/O 或 timers，如果没有，则将其干净地关闭。
 
-#### 各阶段详细解析
+### 各阶段详细解析
 
-##### timers 计时器阶段
+#### timers 计时器阶段
 
 计时器可以在回调后面指定时间阈值，但这不是我们希望其执行的确切时间。 计时器回调将在经过指定的时间后尽早运行。 但是，操作系统调度或其他回调的运行可能会延迟它们，即执行的实际时间不确定。
 
@@ -141,11 +140,11 @@ someAsyncOperation(() => {
 
 回调完成后，队列中不再有回调，此时事件循环已达到最早计时器 (timer) 的阈值 (100ms)，然后返回到计时器 (timer) 阶段以执行计时器的回调。
 
-##### pending callbacks 阶段
+#### pending callbacks 阶段
 
 此阶段执行某些系统操作的回调，例如 TCP 错误，平时无需关注。
 
-##### 轮询 poll 阶段
+#### 轮询 poll 阶段
 
 轮询阶段具有两个主要功能：
 
@@ -160,7 +159,7 @@ someAsyncOperation(() => {
 2.2 如果脚本并没有 setImmediate 设置回调，则事件循环将等待 poll 队列中的回调，然后立即执行它们。
 一旦轮询队列 (poll queue) 为空，事件循环将检查哪些计时器 timer 已经到时间。 如果一个或多个计时器 timer 准备就绪，则事件循环将返回到计时器阶段，以执行这些计时器的回调。
 
-##### 检查阶段 check
+#### 检查阶段 check
 
 此阶段允许在轮询 poll 阶段完成后立即执行回调。 如果轮询 poll 阶段处于空闲，并且脚本已使用 setImmediate 进入 check 队列，则事件循环可能会进入 check 阶段，而不是在 poll 阶段等待。
 
@@ -170,7 +169,7 @@ setImmediate 实际上是一个特殊的计时器，它在事件循环的单独�
 
 > 注意：setImmediate为实验性方法，可能不会被批准成为标准，目前只有最新版本的 Internet Explorer 和 Node.js 0.10+ 实现了该方法
 
-##### setImmediate 和 setTimeout 的区别
+#### setImmediate 和 setTimeout 的区别
 
 setImmediate 和 setTimeout 相似，但是根据调用时间的不同，它们的行为也不同。
 
@@ -214,7 +213,7 @@ mainline 执行完开始事件循环，第一阶段是 timers，这时候 timers
 
 如果有就先执行 timers 的回调，再执行 check 阶段的回调。因此这是 timers 的不确定性导致的。
 
-##### process.nextTick
+#### process.nextTick
 
 process.nextTick 从技术上讲不是事件循环的一部分。 相反，无论事件循环的当前阶段如何，都将在当前操作完成之后处理 nextTickQueue
 
@@ -222,3 +221,21 @@ process.nextTick 和 setImmediate 的区别
 
 1. process.nextTick 在同一阶段立即触发
 2. setImmediate fires on the following iteration or 'tick' of the event loop (在事件循环接下来的阶段迭代中执行 - check 阶段)。
+
+## 模块机制
+
+### CommonJS
+
+Node.js 应用由模块组成，采用 CommonJS 模块规范。
+
+每个文件就是一个模块，有自己的作用域。在一个文件里面定义的变量、函数、类，都是私有的，对其他文件不可见。
+
+如果想在多个文件分享变量，必须定义为 global 对象的属性。
+
+CommonJS 规范规定，每个模块内部，module 变量代表当前模块。这个变量是一个对象，它的 exports 属性（即 module.exports）是对外的接口。加载某个模块，其实是加载该模块的 module.exports 属性。
+
+CommonJS 模块的特点：
+
+- 所有代码都运行在模块作用域，不会污染全局作用域
+- 模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了，以后再加载，就直接读取缓存结果。要想让模块再次运行，必须清除缓存
+- 模块加载的顺序，按照其在代码中出现的顺序
