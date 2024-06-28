@@ -156,14 +156,19 @@ function A() {
 
 经典面试题，循环中使用闭包解决 var 定义函数的问题
 
+```javascript
 for ( var i=1; i<=5; i++) {
 	setTimeout( function timer() {
 		console.log( i );
 	}, i*1000 );
 }
+```
+
 首先因为 setTimeout 是个异步函数，所有会先把循环全部执行完毕，这时候 i 就是 6 了，所以会输出一堆 6。
 
 解决办法两种，第一种使用闭包
+
+```javascript
 
 for (var i = 1; i <= 5; i++) {
   (function(j) {
@@ -172,22 +177,29 @@ for (var i = 1; i <= 5; i++) {
     }, j * 1000);
   })(i);
 }
+```
+
 第二种就是使用 setTimeout  的第三个参数
+```javascript
 
 for ( var i=1; i<=5; i++) {
 	setTimeout( function timer(j) {
 		console.log( j );
 	}, i*1000, i);
 }
+```
 第三种就是使用 let 定义 i 了
 
+```javascript
 for ( let i=1; i<=5; i++) {
 	setTimeout( function timer() {
 		console.log( i );
 	}, i*1000 );
 }
+```
 因为对于 let 来说，他会创建一个块级作用域，相当于
 
+```javascript
 { // 形成块级作用域
   let i = 0
   {
@@ -206,6 +218,7 @@ for ( let i=1; i<=5; i++) {
   }
   ...
 }
+```
 
 ## this
 
