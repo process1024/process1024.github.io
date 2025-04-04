@@ -178,6 +178,10 @@ const config = {
               text: "element-ui表单校验源码解析",
               link: "/blog/element-validate",
             },
+            {
+              text: "前端图片技术解析",
+              link: "/blog/image",
+            },
           ],
         },
       ],
@@ -239,6 +243,7 @@ const config = {
           "/blog/nodejs-cache.md",
           "/blog/next-tick.md",
           "/blog/element-validate.md",
+          "/blog/image.md",
           "/blog/functional.md",
           "/blog/bit-operation.md",
           "/blog/vue2-interview.md",
