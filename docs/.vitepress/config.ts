@@ -96,7 +96,7 @@ const config = {
       "/vue/": [
         {
           isGroup: true,
-          text: "vue",
+          text: "Vue",
           items: [
             {
               text: "nextTick",
@@ -112,7 +112,7 @@ const config = {
       "/react/": [
         {
           isGroup: true,
-          text: "react",
+          text: "React",
           items: [
             {
               text: "fiber",
@@ -223,7 +223,7 @@ const config = {
     "/react/": [
       {
         isGroup: true,
-        text: "react",
+        text: "React",
         children: ["/react/hook.md", "/react/fiber.md"],
       },
     ],
